@@ -351,8 +351,8 @@ ellipsoidal = function(X, angles) {
     eps = sqrt(1 - 1/X^2)
     Lambda = X + log((1 + eps)/(1 - eps))/(2*eps*X)
   }
-  den = (cos(angle)^2 + X^2*sin(angle)^2)
-  2*X^3*sin(angle)/(Lambda*den^2)
+  den = (cos(angles)^2 + X^2*sin(angles)^2)
+  2*X^3*sin(angles)/(Lambda*den^2)
 }
 
 
