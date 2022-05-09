@@ -2,8 +2,12 @@
 
 export(A)
 export(Acan)
+export(Adiurnal)
 export(DailyWeather)
-export(calc_Adiurnal)
+export(Ecan)
+export(Ediurnal)
+export(Ican)
+export(Idiurnal)
 export(canopy)
 export(ellipsoidal)
 export(interpolate_meteo)

@@ -35,7 +35,9 @@ A(
 \value{
 A named vector with gross CO2 assimilation (\code{"Ag"}), net CO2 assimilation (\code{"A"}),
 net CO2 assimilation limited by carboxylation capacity (\code{"Ac"}) and
-net CO2 assimilation limited by electron transport capacity (\code{"Aj"})
+net CO2 assimilation limited by electron transport capacity (\code{"Aj"}),
+excess energy as potential assimilation (\code{"E}) and the relative excess energy
+(\code{"rE}).
 }
 \description{
 Compute CO2 assimilation for a leaf given parameters and environment
