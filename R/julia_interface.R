@@ -24,13 +24,13 @@
 #' @param S_Jmax Entropy coefficient of Jmax (kJ/mol/K)
 #' @param E_Rd Activation energy of Rd (kJ/mol)
 #' @param f_Rd Ratio between Rd25 and Vcmax25
-#' @param gm25 Mesophyll conductance (mol/m2/s)
+#' @param chi_gm Slope between gm25 and Np (1/s)
 #' @param E_gm Activation energy gm (kJ/mol)
 #' @param S_gm Entropy coefficient of gm (kJ/mol/K)
 #' @param D_gm Deactivation energy of gm (kJ/mol)
 #' @param gs0 Minimum stomatal conductance (mol/m2/s)
-#' @param sgs Scaling factor between gross assimilation and stomatal conductance
-#' @param D0  Sensitivity of gs to VPD (kPa)
+#' @param a1 Empirical parameter capturing the effect of VPD on gs
+#' @param b1  Empirical parameter capturing the effect of VPD on gs (1/kPa)
 #' @param gb Boundary layer conductance (mol/m2/s)
 #' @param angles Named list with parameters for the leaf angle distribution (see documentation)
 #' @param Ncmin Minimum leaf nitrogen content (g N/g DW)
@@ -51,7 +51,9 @@
 #' sky should be divided.
 #'
 #' @return
-#' A Julia object with all the parameter values (access via $ notation)
+#' A Julia object with all the parameter values (access via $ notation). The
+#' units of the values inside this object may not coincide with the input to
+#' the function because of internal unit conversions.
 #'
 #' @export
 #'
@@ -81,13 +83,13 @@ parameters = function(
   S_Jmax = 0.65,
   E_Rd = 46.39,
   f_Rd  = 0.01,
-  gm25 = 0.4,
+  chi_gm = 0.125*14/0.65,
   E_gm = 70.2,
   S_gm = 0.32,
   D_gm = 94.0,
   gs0 = 0.05/1.56,
-  sgs = 3.0,
-  D0 = 1.5,
+  a1 = 0.9,
+  b1 = 0.15,
   gb = 0.5,
   angles = list(X = 1.0, rtol = 1e-3),
   Ncmin   = 8.4e-3,
@@ -132,13 +134,13 @@ parameters = function(
                         S_Jmax = S_Jmax,
                         E_Rd = E_Rd,
                         f_Rd  = f_Rd,
-                        gm25 = gm25,
+                        chi_gm = chi_gm,
                         E_gm = E_gm,
                         S_gm = S_gm,
                         D_gm = D_gm,
                         gs0 = gs0,
-                        sgs = sgs,
-                        D0 = D0,
+                        a1 = a1,
+                        b1 = b1,
                         gb = gb,
                         angles = leafangle,
                         Ncmin   = Ncmin,

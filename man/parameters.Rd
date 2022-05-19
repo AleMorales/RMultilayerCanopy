@@ -27,13 +27,13 @@ parameters(
   S_Jmax = 0.65,
   E_Rd = 46.39,
   f_Rd = 0.01,
-  gm25 = 0.4,
+  chi_gm = 0.125 * 14/0.65,
   E_gm = 70.2,
   S_gm = 0.32,
   D_gm = 94,
   gs0 = 0.05/1.56,
-  sgs = 3,
-  D0 = 1.5,
+  a1 = 0.9,
+  b1 = 0.15,
   gb = 0.5,
   angles = list(X = 1, rtol = 0.001),
   Ncmin = 0.0084,
@@ -88,7 +88,7 @@ parameters(
 
 \item{f_Rd}{Ratio between Rd25 and Vcmax25}
 
-\item{gm25}{Mesophyll conductance (mol/m2/s)}
+\item{chi_gm}{Slope between gm25 and Np (1/s)}
 
 \item{E_gm}{Activation energy gm (kJ/mol)}
 
@@ -98,9 +98,9 @@ parameters(
 
 \item{gs0}{Minimum stomatal conductance (mol/m2/s)}
 
-\item{sgs}{Scaling factor between gross assimilation and stomatal conductance}
+\item{a1}{Empirical parameter capturing the effect of VPD on gs}
 
-\item{D0}{Sensitivity of gs to VPD (kPa)}
+\item{b1}{Empirical parameter capturing the effect of VPD on gs (1/kPa)}
 
 \item{gb}{Boundary layer conductance (mol/m2/s)}
 
@@ -117,7 +117,9 @@ parameters(
 \item{Ca}{Air CO2 molar ratio (umol/mol)}
 }
 \value{
-A Julia object with all the parameter values (access via $ notation)
+A Julia object with all the parameter values (access via $ notation). The
+units of the values inside this object may not coincide with the input to
+the function because of internal unit conversions.
 }
 \description{
 Specify parameters of the virtual crop
